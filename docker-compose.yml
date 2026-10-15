@@ -1,16 +1,20 @@
 services:
-  mongo:
-    image: mongo:7
-    container_name: bigdata-p4-mongo
+  postgres:
+    image: postgres:16
+    container_name: bigdata-p4-postgres
+    environment:
+      POSTGRES_USER: bigdata
+      POSTGRES_PASSWORD: bigdata
+      POSTGRES_DB: itaca
     ports:
-      - "27020:27017"
+      - "5433:5432"
     volumes:
-      - mongo-data:/data/db
+      - postgres-data:/var/lib/postgresql/data
     networks:
       - bigdata-net
 
 volumes:
-  mongo-data:
+  postgres-data:
 
 networks:
   bigdata-net:
